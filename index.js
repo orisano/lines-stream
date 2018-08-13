@@ -9,7 +9,12 @@ module.exports = function lineStream() {
         const lines = this.buffer.split("\n")
         const L = lines.length
         for (let i = 0; i < L - 1; ++i) {
-          callback(null, lines[i])
+          const line = lines[i]
+          if (line && line[line.length - 1] === "\r") {
+            callback(null, line.substring(0, line.length - 1))
+          } else {
+            callback(null, line)
+          }
         }
         this.buffer = lines[L - 1]
       }
