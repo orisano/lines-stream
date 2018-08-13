@@ -1,0 +1,22 @@
+{
+  "name": "lines-stream",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orisano/lines-stream.git"
+  },
+  "keywords": [
+    "stream"
+  ],
+  "author": "Nao YONASHIRO",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orisano/lines-stream/issues"
+  },
+  "homepage": "https://github.com/orisano/lines-stream#readme"
+}
