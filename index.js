@@ -1,26 +1,31 @@
 const {Transform} = require("stream")
 
 module.exports = function lineStream() {
+  let buffer = ""
   return new Transform({
-    buffer: "",
     transform(chunk, encoding, callback) {
-      this.buffer += chunk
-      if (chunk.indexOf("\n") >= 0) {
-        const lines = this.buffer.split("\n")
-        const L = lines.length
-        for (let i = 0; i < L - 1; ++i) {
-          const line = lines[i]
-          if (line && line[line.length - 1] === "\r") {
-            callback(null, line.substring(0, line.length - 1))
-          } else {
-            callback(null, line)
-          }
-        }
-        this.buffer = lines[L - 1]
+      buffer += chunk
+      if (chunk.indexOf("\n") < 0) {
+        callback()
+        return
       }
+
+      const lines = buffer.split("\n")
+      const L = lines.length
+      for (let i = 0; i < L - 1; ++i) {
+        const line = lines[i]
+        if (line && line[line.length - 1] === "\r") {
+          this.push(line.substring(0, line.length - 1))
+        } else {
+          this.push(line)
+        }
+      }
+      buffer = lines[L - 1]
+      callback()
     },
     flush(callback) {
-      callback(this.buffer)
+      this.push(buffer)
+      callback()
     }
   })
 }
