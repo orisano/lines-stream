@@ -3,6 +3,7 @@ const {Transform} = require("stream")
 module.exports = function linesStream() {
   let buffer = ""
   return new Transform({
+    decodeStrings: false,
     transform(chunk, encoding, callback) {
       buffer += chunk
       if (chunk.indexOf("\n") < 0) {
