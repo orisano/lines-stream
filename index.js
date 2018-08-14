@@ -1,6 +1,6 @@
 const {Transform} = require("stream")
 
-module.exports = function lineStream() {
+module.exports = function linesStream() {
   let buffer = ""
   return new Transform({
     transform(chunk, encoding, callback) {
