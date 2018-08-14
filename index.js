@@ -4,6 +4,7 @@ module.exports = function linesStream() {
   let buffer = ""
   return new Transform({
     decodeStrings: false,
+    encoding: "utf8",
     transform(chunk, encoding, callback) {
       buffer += chunk
       if (chunk.indexOf("\n") < 0) {
