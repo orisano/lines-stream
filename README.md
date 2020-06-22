@@ -6,7 +6,7 @@ npm i @orisano/lines-stream
 ```
 
 ## Author
-Nao YONASHIRO(@orisano)
+Nao Yonashiro (@orisano)
 
 ## License
 MIT
